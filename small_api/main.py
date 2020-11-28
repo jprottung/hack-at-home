@@ -114,40 +114,32 @@ async def root():
             print('R²: {}'.format(r))
         return r
 
-class Predictor():
-    ​
-
-    def __init__(self, xlsx_path):
-        self.df = pd.read_excel(xlsx_path)
-        self.des_names = ['ssl', 'spl', 'wal', 'bil']
-        self.min_max = {name: [data_df.min()[name], data_df.max()[name]] for name in self.des_names}
-        self.meta = {'designParam': self.des_names, 'kpis': ['hal']}
-        self.model = RBF_Surrogate(self.df,
+    class Predictor():
+        def __init__(self, xlsx_path):
+            self.df = pd.read_excel(xlsx_path)
+            self.des_names = ['ssl', 'spl', 'wal', 'bil']
+            self.min_max = {name: [data_df.min()[name], data_df.max()[name]] for name in self.des_names}
+            self.meta = {'designParam': self.des_names, 'kpis': ['hal']}
+            self.model = RBF_Surrogate(self.df,
                                    self.meta,
                                    0.0001,
                                    rbf_def={'kernel': 'Cubic', 'tail': 'Linear', 'eta': 1e-06})
-        self.designs = {}
+            self.designs = {}
 
-    ​
+        def train_model(self):
+            self.model.create_RBFsurrogate('hal')
+            self.model.train_surrogate('hal')
 
-    def train_model(self):
-        self.model.create_RBFsurrogate('hal')
-        self.model.train_surrogate('hal')
+        def predict(self, static_input_array):
+            for i, design in enumerate(static_input_array):
+                X_ = np.full((1000, 4), static_input_array).T  # Only take all values of input
+                des_min, des_max = self.min_max[self.des_names[i]]
+                X_[i] = np.linspace(des_min, des_max, 1000)
+                X_ = X_.T
+                self.designs[str(self.des_names[i])] = {
+                    'input': list(np.linspace(des_min, des_max, 1000)),
+                    'output': [self.model.predict('hal', x) for x in X_]}
 
-    ​
-
-    def predict(self, static_input_array):
-        for i, design in enumerate(static_input_array):
-            X_ = np.full((1000, 4), static_input_array).T  # Only take all values of input
-            des_min, des_max = self.min_max[self.des_names[i]]
-            X_[i] = np.linspace(des_min, des_max, 1000)
-            X_ = X_.T
-            self.designs[str(self.des_names[i])] = {
-                'input': list(np.linspace(des_min, des_max, 1000)),
-                'output': [self.model.predict('hal', x) for x in X_]}
-
-    ​
-    ​
     if __name__ == '__main__':
         p = Predictor('data.xlsx')
         p.train_model()
