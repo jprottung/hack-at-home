@@ -40,13 +40,15 @@
                   }}</span>
                 </p>
               </div>
-              <vs-button
-                icon-pack="feather"
-                icon="icon-chevrons-right"
-                icon-after
-                class="shadow-md w-full lg:mt-0 mt-4"
-                >View Details</vs-button
-              >
+
+              <router-link to="/analysis">
+                <vs-button
+                  icon-pack="feather"
+                  icon="icon-chevrons-right"
+                  icon-after
+                  class="shadow-md w-full lg:mt-0 mt-4"
+                  >View Details</vs-button>
+              </router-link>
             </div>
 
             <!-- RIGHT COL -->
