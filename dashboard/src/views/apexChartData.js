@@ -1062,7 +1062,7 @@ export default {
           yAxisIndex: 0,
           label: {
             show: true,
-            text: 'now',
+            text: ' now ',
             style: {
               color: "#000"
             }
@@ -1070,11 +1070,17 @@ export default {
         }]
       },
 
-      datanows: {
+      dataLabels: {
         enabled: false
       },
       stroke: {
         curve: 'smooth'
+      },
+      yaxis: {
+        title: 'Happiness',
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' %' }
+        }
       },
       colors: themeColors,
       xaxis: {
@@ -2080,7 +2086,10 @@ export default {
           9.96505027923981,
           9.975044592361012,
           9.985038905482217
-        ]
+        ],
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' h' }
+        }
       },
     }
   },
@@ -3104,7 +3113,7 @@ export default {
           yAxisIndex: 0,
           label: {
             show: true,
-            text: 'now',
+            text: ' now ',
             style: {
               color: "#000"
             }
@@ -3119,6 +3128,12 @@ export default {
         curve: 'smooth'
       },
       colors: themeColors,
+      yaxis: {
+        title: 'Happiness',
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' %' }
+        }
+      },
       xaxis: {
         type: 'numeric',
         categories: [
@@ -4122,7 +4137,10 @@ export default {
           149.61385122419145,
           149.76360080796937,
           149.9133503917473
-        ]
+        ],
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' min' }
+        }
       },
       tooltip: {
         x: {
@@ -5152,7 +5170,7 @@ export default {
           yAxisIndex: 0,
           label: {
             show: true,
-            text: 'now',
+            text: ' now ',
             style: {
               color: "#000"
             }
@@ -5167,6 +5185,12 @@ export default {
         curve: 'smooth'
       },
       colors: themeColors,
+      yaxis: {
+        title: 'Happiness',
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' %' }
+        }
+      },
       xaxis: {
         type: 'numeric',
         categories: [
@@ -6170,7 +6194,10 @@ export default {
           7.978245402756461,
           7.9862420793393385,
           7.994238755922215
-        ]
+        ],
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' l' }
+        }
       },
       tooltip: {
         x: {
@@ -7200,7 +7227,7 @@ export default {
           yAxisIndex: 0,
           label: {
             show: true,
-            text: 'now',
+            text: ' now ',
             style: {
               color: "#000"
             }
@@ -7213,6 +7240,12 @@ export default {
       },
       stroke: {
         curve: 'smooth'
+      },
+      yaxis: {
+        title: 'Happiness',
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' %' }
+        }
       },
       colors: themeColors,
       xaxis: {
@@ -8218,7 +8251,10 @@ export default {
           7.976893702653603,
           7.984880563365322,
           7.9928674240770405
-        ]
+        ],
+        labels: {
+          formatter: (value) => { return Math.round(value) + ' l' }
+        }
       },
       tooltip: {
         x: {
